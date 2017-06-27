@@ -21,7 +21,7 @@ public class ProductController {
 	@RequestMapping("/products")
 	public String listProducts(Model model){
 		model.addAttribute("products", productService.listAllProducts());
-		return "products";
+		return "products/products";
 	}
 	
 	
@@ -30,7 +30,7 @@ public class ProductController {
 		Optional<Product> productOptional = productService.getProductById(id);
 		if(productOptional.isPresent()){
 			model.addAttribute("product", productOptional.get());
-			return "product";
+			return "products/product";
 		}
 		throw new IllegalArgumentException("Invalid id");
 	}
@@ -38,7 +38,7 @@ public class ProductController {
 	@RequestMapping("/product/new")
 	public String newProduct(Model model){
 		model.addAttribute("product", new Product());
-		return "productform";
+		return "products/productform";
 	}
 	
 	@RequestMapping("/products/edit/{id}")
@@ -46,7 +46,7 @@ public class ProductController {
 		Optional<Product> productOptional = productService.getProductById(id);
 		if(productOptional.isPresent()){
 			model.addAttribute("product", productOptional.get());
-			return "productform";
+			return "products/productform";
 		}
 		throw new IllegalArgumentException();
 	}
